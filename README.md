@@ -24,6 +24,25 @@ import plotly.io as pio
 pio.renderers.default='browser'
 ~~~
 
+## Visualizing the dataset
+
+~~~python
+dataset = pd.read_csv('country_data.csv')
+~~~
+
+~~~python
+desc_table = dataset.describe()
+~~~
+
+~~~python
+# drop column with country labels
+data =  dataset.drop(columns=['country'])
+
+# Pearson correlation matrix
+corr_mtx = pg.rcorr(data, method='pearson', upper='pval', decimals=4,
+                      pval_stars={0.01: '***', 0.05: '**', 0.1: '*'})
+~~~
+
 #### Descriptive Statistics
 <img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="550" height="250"> 
 
