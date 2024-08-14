@@ -1,8 +1,8 @@
 # Introduction
 
-In this project we apply unsupervised learning to organize countries in clusters based on their stats.
+In this project, we apply unsupervised learning to organize countries in clusters based on their stats.
 
-The dataset can be found in: https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data
+The dataset can be found at: https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data
 
 ## Packages
 
@@ -26,13 +26,21 @@ pio.renderers.default='browser'
 
 ## Visualizing the dataset
 
+#### Read dataset file to a dataframe
 ~~~python
 dataset = pd.read_csv('country_data.csv')
 ~~~
 
+#### Descriptive Statistics
+
 ~~~python
 desc_table = dataset.describe()
 ~~~
+
+<img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="550" height="250"> 
+
+
+#### Pearson Correlation Matrix
 
 ~~~python
 # drop column with country labels
@@ -43,9 +51,55 @@ corr_mtx = pg.rcorr(data, method='pearson', upper='pval', decimals=4,
                       pval_stars={0.01: '***', 0.05: '**', 0.1: '*'})
 ~~~
 
-#### Descriptive Statistics
-<img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="550" height="250"> 
-
-#### Pearson Correlation Matrix
 <img src="https://github.com/user-attachments/assets/84062bb4-fb42-4291-8ed7-9ed79e58ac4a" alt="Pearson Correlation" width="550" height="250">
 
+## Agglomerative Hierarchical Clustering
+
+#### Standardize variables applying ZScore
+
+~~~python
+# Apply ZScore to all variables, setting average=0 and std=1 to each variable
+z_data = data.apply(zscore, ddof=1)
+~~~
+
+### Euclidean Distance + Single Linkage
+
+~~~python
+plt.figure(figsize=(16,8))
+single_link = sch.linkage(z_data, method='single', metric='euclidean')
+dendrogram_s = sch.dendrogram(single_link)
+plt.title('Single Linkage Dendrogram', fontsize=16)
+plt.xlabel('Countries', fontsize=16)
+plt.ylabel('Euclidian Distance', fontsize=16)
+plt.show()
+~~~
+
+<img src="https://github.com/user-attachments/assets/a7f8a26b-3902-4061-ae9e-2692f715cc46" alt="Single Linkage" width="550" height="250">
+
+### Euclidian Distance + Average Linkage
+
+~~~python
+plt.figure(figsize=(16,8))
+avg_link = sch.linkage(z_data, method='average', metric='euclidean')
+dendrogram_a = sch.dendrogram(avg_link)
+plt.title('Average Linkage Dendrogram', fontsize=16)
+plt.xlabel('Countries', fontsize=16)
+plt.ylabel('Euclidean Distance', fontsize=16)
+plt.show()
+~~~
+
+<img src="https://github.com/user-attachments/assets/dc379933-3ec5-476f-960d-be25aa8b0bc7" alt="Average Linkage" width="550" height="250">
+
+### Euclidian Distance + Complete Linkage
+
+~~~python
+plt.figure(figsize=(16,8))
+complete_link = sch.linkage(z_data, method='complete', metric='euclidean')
+dendrogram_c = sch.dendrogram(complete_link)
+plt.title('Complete Linkage Dendrogram', fontsize=16)
+plt.xlabel('Countries', fontsize=16)
+plt.ylabel('Euclidean Distance', fontsize=16)
+plt.show()
+~~~
+
+<img src="https://github.com/user-attachments/assets/820dd7f5-b79f-4b06-a429-7ca87bd65bd0" alt="Complete Linkage" width="550" height="250">
