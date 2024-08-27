@@ -1,10 +1,16 @@
-# Introduction
+# Clustering
 
 In this project, we apply unsupervised learning to organize countries in clusters based on their stats.
 
 The dataset can be found at: https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data
 
-## Packages
+## Table of Contents
+
+- [Libraries](#libraries)
+- [Dataset Statistics](#dataset-statistics)
+- [Agglomerative Hierarchical Clustering](#agglomerative-hierarchical-clustering)
+
+## Libraries
 
 ~~~python
 import pandas as pd
@@ -24,7 +30,7 @@ import plotly.io as pio
 pio.renderers.default='browser'
 ~~~
 
-## Visualizing the dataset
+## Dataset Statistics
 
 #### Read dataset file to a dataframe
 ~~~python
@@ -62,7 +68,7 @@ corr_mtx = pg.rcorr(data, method='pearson', upper='pval', decimals=4,
 z_data = data.apply(zscore, ddof=1)
 ~~~
 
-### Euclidean Distance + Single Linkage
+#### Single Linkage
 
 ~~~python
 plt.figure(figsize=(16,8))
@@ -76,7 +82,7 @@ plt.show()
 
 <img src="https://github.com/user-attachments/assets/a7f8a26b-3902-4061-ae9e-2692f715cc46" alt="Single Linkage" width="550" height="250">
 
-### Euclidian Distance + Average Linkage
+#### Average Linkage
 
 ~~~python
 plt.figure(figsize=(16,8))
@@ -90,7 +96,7 @@ plt.show()
 
 <img src="https://github.com/user-attachments/assets/dc379933-3ec5-476f-960d-be25aa8b0bc7" alt="Average Linkage" width="550" height="250">
 
-### Euclidian Distance + Complete Linkage
+#### Complete Linkage
 
 ~~~python
 plt.figure(figsize=(16,8))
