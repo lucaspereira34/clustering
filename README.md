@@ -109,3 +109,19 @@ plt.show()
 ~~~
 
 <img src="https://github.com/user-attachments/assets/820dd7f5-b79f-4b06-a429-7ca87bd65bd0" alt="Complete Linkage" width="550" height="250">
+
+
+#### Cluster Labels
+
+Since the complete linkage method returned the best result, we create a new variable that stores labels from the clusters defined by the AgglomerativeClustering function using linkage = 'complete'.
+
+~~~python
+cluster = AgglomerativeClustering(n_clusters = 5, metric = 'euclidean', linkage = 'complete')
+set_cluster = cluster.fit_predict(z_data)
+
+data['cluster'] = set_cluster
+data.cluster = data.cluster.astype('category')
+
+z_data['cluster'] = set_cluster
+z_data.cluster = z_data.cluster.astype('category')
+~~~
