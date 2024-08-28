@@ -112,9 +112,93 @@ plt.show()
 cluster = AgglomerativeClustering(n_clusters = 5, metric = 'euclidean', linkage = 'complete')
 set_cluster = cluster.fit_predict(z_data)
 
-data['cluster'] = set_cluster
-data.cluster = data.cluster.astype('category')
+dataset['cluster'] = set_cluster
+dataset.cluster = dataset.cluster.astype('category')
 
 z_data['cluster'] = set_cluster
 z_data.cluster = z_data.cluster.astype('category')
 
+#%% ANOVA
+
+# child_mort
+pg.anova(dv='child_mort', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# exports
+pg.anova(dv='exports', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# imports
+pg.anova(dv='imports', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# health
+pg.anova(dv='health', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# income
+pg.anova(dv='income', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# inflation
+pg.anova(dv='inflation', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# life_expec
+pg.anova(dv='life_expec', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# total_fer
+pg.anova(dv='total_fer', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+# gdpp
+pg.anova(dv='gdpp', 
+         between='cluster', 
+         data=z_data,
+         detailed=True).T
+
+#%% Clusters 3D graph
+
+# Perspective 1
+fig = px.scatter_3d(dataset, 
+                    x='total_fer', 
+                    y='income', 
+                    z='life_expec',
+                    color='cluster')
+fig.show()
+
+# Perspective 2
+fig = px.scatter_3d(dataset, 
+                    x='gdpp', 
+                    y='income', 
+                    z='life_expec',
+                    color='cluster')
+fig.show()
+
+#%% Identifying clusters statistics
+
+# Grouping dataset
+
+analysis = dataset.drop(columns=['country']).groupby(by=['cluster'])
+
+# Estatísticas descritivas por grupo
+
+cluster_avg = analysis.mean().T
+cluster_desc = analysis.describe().T
