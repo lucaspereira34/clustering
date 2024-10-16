@@ -1,13 +1,10 @@
 # Clustering
 
-In this project, we apply unsupervised learning to organize countries in clusters based on their stats.
+This project explores the application of Hierarchical and Norhierarchical algorithms in Cluster Analysis. 
 
-The dataset can be found at: https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data
-
-## Table of Contents
+# Table of Contents
 
 - [Libraries](#libraries)
-- [Dataset Statistics](#dataset-statistics)
 - [Agglomerative Hierarchical Clustering](#agglomerative-hierarchical-clustering)
 
 ## Libraries
@@ -30,7 +27,9 @@ import plotly.io as pio
 pio.renderers.default='browser'
 ~~~
 
-## Dataset Statistics
+## Agglomerative Hierarchical Clustering
+
+### Dataset Statistics
 
 #### Read dataset file to a dataframe
 ~~~python
@@ -45,7 +44,6 @@ desc_table = dataset.describe()
 
 <img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="550" height="250"> 
 
-
 #### Pearson Correlation Matrix
 
 ~~~python
@@ -58,8 +56,6 @@ corr_mtx = pg.rcorr(data, method='pearson', upper='pval', decimals=4,
 ~~~
 
 <img src="https://github.com/user-attachments/assets/84062bb4-fb42-4291-8ed7-9ed79e58ac4a" alt="Pearson Correlation" width="550" height="250">
-
-## Agglomerative Hierarchical Clustering
 
 #### Standardize variables applying ZScore
 
