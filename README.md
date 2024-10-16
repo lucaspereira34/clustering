@@ -2,7 +2,7 @@
 
 This project explores the application of Hierarchical and Norhierarchical algorithms in Cluster Analysis. 
 
-# Table of Contents
+## Table of Contents
 
 - [Libraries](#libraries)
 - [Agglomerative Hierarchical Clustering](#agglomerative-hierarchical-clustering)
