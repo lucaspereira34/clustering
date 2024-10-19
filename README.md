@@ -1,6 +1,11 @@
 # Clustering
 
-This project explores the application of Hierarchical and Norhierarchical algorithms in Cluster Analysis. 
+**Clustering Analysis** is an **unsupervised learning** technique used to group observations of a sample into clusters. These clusters are formed such that objects within the same group are more similar to each other than to those in other clusters. Therefore, it is possible to uncover patterns, relationships, and structures that may not be immediately apparent.
+
+As an *unsupervised learning* method:
+- It is characterized as an exploratory technique and thus does not have a predictive nature for out-of-sample observations.
+- If new observations are added to the sample, new clusters must be generated, as the inclusion of new data may alter the group structure.
+- If one or more variables are changed, new clusters must also be generated, as modifications in the variables can affect the composition of the clusters.
 
 ## Table of Contents
 
@@ -9,7 +14,22 @@ This project explores the application of Hierarchical and Norhierarchical algori
 
 ## Libraries
 
+Run this cell if you don't have the following libraries or need to update them.
 ~~~python
+# Install libraries
+!pip install pandas
+!pip install numpy
+!pip install matplotlib
+!pip install seaborn
+!pip install plotly
+!pip install scipy
+!pip install scikit-learn
+!pip install pingouin
+~~~
+
+Libraries and functions used in this project.
+~~~python
+# Import libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
