@@ -21,19 +21,6 @@ This project covers two types of clustering:
 
 ## Libraries
 
-Run this if the following libraries are not installed.
-~~~python
-# Install libraries
-!pip install pandas
-!pip install numpy
-!pip install matplotlib
-!pip install seaborn
-!pip install plotly
-!pip install scipy
-!pip install scikit-learn
-!pip install pingouin
-~~~
-
 Libraries and functions used in this project.
 ~~~python
 # Import libraries
@@ -55,6 +42,15 @@ pio.renderers.default='browser'
 ~~~
 
 ## Agglomerative Hierarchical Clustering
+
+This analysis relies on specific choices:
+
+- Choice of **dissimilarity measure (distance)**:
+  - Distance between observations based on the selected variables;
+  - Indicates the degree of difference among observations.
+ 
+- Choice of **linkage method** for observations:
+  - Specification of the distance measure when clusters have been formed. 
 
 ### Dataset Statistics
 
