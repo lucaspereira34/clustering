@@ -43,6 +43,13 @@ pio.renderers.default='browser'
 
 ## Agglomerative Hierarchical Clustering
 
+A dataset containing socio-economic data from 167 countries is used to illustrate this topic.
+By employing Agglomerative Hierarchical Clustering, the countries are grouped based on the similarity of their data.
+
+Source: https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data.
+
+The python script for this example is *country.py*.
+
 This analysis relies on specific choices:
 
 - Choice of **dissimilarity measure (distance)**:
@@ -52,9 +59,9 @@ This analysis relies on specific choices:
 - Choice of **linkage method** for observations:
   - Specification of the distance measure when clusters have been formed. 
 
-### Dataset Statistics
+### Dataset Overview
 
-#### Read dataset file to a dataframe
+Read dataset file to a dataframe
 ~~~python
 dataset = pd.read_csv('country_data.csv')
 ~~~
