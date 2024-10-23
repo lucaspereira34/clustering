@@ -2,10 +2,10 @@
 
 **Clustering Analysis** is an **unsupervised learning** technique used to group observations of a sample into clusters.
 
-These clusters are formed such that **objects within the same group are more similar to each other than to those in other clusters**. Therefore, it is possible to uncover patterns, relationships, and structures that may not be immediately apparent.
+These clusters are formed such that **objects within the same group are more similar to each other than to those in other clusters**. Thus, it is possible to uncover patterns, relationships, and structures that may not be immediately apparent.
 
 As an **unsupervised learning** method:
-- It is characterized as an **exploratory technique** and thus does not have a predictive nature for out-of-sample observations.
+- It is characterized as an **exploratory technique**, lacking a predictive nature and, therefore, not intended for making inferences about out-of-sample observations.
 - If new observations are added to the sample, new clusters must be generated, as the inclusion of new data may alter the group structure.
 - If one or more variables are changed, new clusters must also be generated, as modifications in the variables can affect the composition of the clusters.
 
