@@ -18,11 +18,15 @@ import plotly.graph_objects as go
 import plotly.io as pio
 pio.renderers.default='browser'
 
-#%% Import dataset
+#%% Read dataset
 
 dataset = pd.read_csv('country_data.csv')
 
+
 #%% Visualize information about data and variables
+
+# dataset information
+dataset.info()
 
 # descriptive statistics
 desc_table = dataset.describe()
