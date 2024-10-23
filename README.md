@@ -12,7 +12,7 @@ As an **unsupervised learning** method:
 This project covers two types of clustering:
 
 - **Agglomerative Hierarchical Clustering**: Builds a hierarchy os clusters by starting with individual points and merging them.
-- **K-Means**: Divides the data into a predefined number of clusters. K-means iteratively assigns data points to clusters based on their distance to centroids.
+- *(Work in progress...)* **K-Means**: Divides the data into a predefined number of clusters. K-means iteratively assigns data points to clusters based on their distance to centroids. 
 
 ## Table of Contents
 
@@ -66,13 +66,25 @@ Read dataset file to a dataframe
 dataset = pd.read_csv('country_data.csv')
 ~~~
 
-#### Descriptive Statistics
+Use *info()* and *describe()* to get a dataset overview. It can be concluded that:
+
+- There are 10 columns, with column 0 containing country labels and the other nine containing socio-economic variables;
+- All variables are **quantitative**. *Income* and *gdpp* are **discrete**, while the others are **continuous**.
+- The variables have distinct units of measurement, which implies that they need to be standardized.
+- There are no null values;
+
+~~~python
+dataset.info()
+~~~
+
+<img src="https://github.com/user-attachments/assets/c0f87f6c-5179-4361-a2bd-087d570a3122" alt="DataFrame information" width="250" height="200"> 
+<br><br>
 
 ~~~python
 desc_table = dataset.describe()
 ~~~
 
-<img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="550" height="250"> 
+<img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="500" height="200"> 
 
 #### Pearson Correlation Matrix
 
