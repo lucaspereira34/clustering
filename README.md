@@ -11,7 +11,7 @@ As an **unsupervised learning** method:
 
 This project covers two types of clustering:
 
-- **Agglomerative Hierarchical Clustering**: Builds a hierarchy os clusters by starting with individual points and merging them.
+- **Agglomerative Hierarchical Clustering**: Builds a hierarchy of clusters by starting with individual points and merging them.
 - *(Work in progress...)* **K-Means**: Divides the data into a predefined number of clusters. K-means iteratively assigns data points to clusters based on their distance to centroids. 
 
 ## Table of Contents
