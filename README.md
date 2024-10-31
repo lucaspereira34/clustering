@@ -1,6 +1,6 @@
 # Clustering
 
-**Clustering Analysis** is an **unsupervised learning** technique used to group observations of a sample into clusters.
+**Clustering Analysis** is an **unsupervised learning** technique used to group sample observations into clusters.
 
 These clusters are formed such that **objects within the same group are more similar to each other than to those in other clusters**. Thus, it is possible to uncover patterns, relationships, and structures that may not be immediately apparent.
 
