@@ -23,22 +23,28 @@ pio.renderers.default='browser'
 dataset = pd.read_csv('country_data.csv')
 
 
-#%% Visualize information about data and variables
+#%% Dataset Overview. Visualize information about data and variables
 
 # dataset information
-dataset.info()
+dataset.info()  
 
 # descriptive statistics
 desc_table = dataset.describe()
 
+#%% Standardize Variables
+
 # drop column with country labels
 data =  dataset.drop(columns=['country'])
+
+# Apply ZScore to all variables, setting average=0 and std=1 to each variable
+z_data = data.apply(zscore, ddof=1)
+
+
+#%% Correlation
 
 # Pearson correlation matrix
 corr_mtx = pg.rcorr(data, method='pearson', upper='pval', decimals=4,
                       pval_stars={0.01: '***', 0.05: '**', 0.1: '*'})
-
-#%% Correlation heatmap
 
 # correlation matrix
 corr = data.corr()
@@ -60,11 +66,6 @@ fig.add_trace(
 fig.update_layout(height=600, width=600)
 
 fig.show()
-
-#%% Standardize variables
-
-# Apply ZScore to all variables, setting average=0 and std=1 to each variable
-z_data = data.apply(zscore, ddof=1)
 
 #%% Agglomerative hierarchical clustering: euclidean distance + single linkage
 
