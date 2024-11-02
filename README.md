@@ -68,11 +68,6 @@ dataset = pd.read_csv('country_data.csv')
 
 Use *info()* and *describe()* to get a dataset overview. It can be concluded that:
 
-- There are 10 columns, with column 0 containing country labels and the other nine containing socio-economic variables;
-- All variables are **quantitative**. *Income* and *gdpp* are **discrete**, while the others are **continuous**.
-- The variables have distinct units of measurement, which implies that they need to be standardized.
-- There are no null values;
-
 ~~~python
 dataset.info()
 ~~~
@@ -86,23 +81,24 @@ desc_table = dataset.describe()
 
 <img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="500" height="200"> 
 
-#### Pearson Correlation Matrix
+- There are 10 columns, with column 0 containing country labels and the other nine containing socio-economic variables;
+- All variables are **quantitative**. *Income* and *gdpp* are **discrete**, while the others are **continuous**.
+- The variables have distinct units of measurement, which implies that they need to be standardized.
+- There are no null values;
+
+### Standardize variables
+
+Since the variables have distinct units of measurement, they need to be standardized to ensure the effective application of clustering techniques. Create a new dataframe without the country labels so the  function can be applied only to the dataset's quantitative variables.
 
 ~~~python
 # drop column with country labels
 data =  dataset.drop(columns=['country'])
-
-# Pearson correlation matrix
-corr_mtx = pg.rcorr(data, method='pearson', upper='pval', decimals=4,
-                      pval_stars={0.01: '***', 0.05: '**', 0.1: '*'})
 ~~~
 
-<img src="https://github.com/user-attachments/assets/84062bb4-fb42-4291-8ed7-9ed79e58ac4a" alt="Pearson Correlation" width="550" height="250">
-
-#### Standardize variables applying ZScore
+Apply the ZScore function from scipy.stats to standardize the variables. This function sets mean = 0 and standard deviation = 1, enabling the comparison of variables with different units of measurement.
 
 ~~~python
-# Apply ZScore to all variables, setting average=0 and std=1 to each variable
+# Apply ZScore to , setting average=0 and std=1 to each variable
 z_data = data.apply(zscore, ddof=1)
 ~~~
 
