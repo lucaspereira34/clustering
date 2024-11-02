@@ -19,9 +19,26 @@ This project covers two types of clustering:
 - [Libraries](#libraries)
 - [Agglomerative Hierarchical Clustering](#agglomerative-hierarchical-clustering)
 
+# Agglomerative Hierarchical Clustering
+
+A dataset containing socio-economic data from 167 countries is used to illustrate this topic.
+By employing Agglomerative Hierarchical Clustering, the countries are grouped based on the similarity of their data.
+
+Source: https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data.
+
+The python script for this example is *country.py*.
+
+This analysis relies on specific choices:
+
+- Choice of **dissimilarity measure (distance)**:
+  - Distance between observations based on the selected variables;
+  - Indicates the degree of difference among observations.
+ 
+- Choice of **linkage method** for observations:
+  - Specification of the distance measure when clusters have been formed. 
+
 ## Libraries
 
-Libraries and functions used in this project.
 ~~~python
 # Import libraries
 import pandas as pd
@@ -41,32 +58,14 @@ import plotly.io as pio
 pio.renderers.default='browser'
 ~~~
 
-## Agglomerative Hierarchical Clustering
-
-A dataset containing socio-economic data from 167 countries is used to illustrate this topic.
-By employing Agglomerative Hierarchical Clustering, the countries are grouped based on the similarity of their data.
-
-Source: https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data.
-
-The python script for this example is *country.py*.
-
-This analysis relies on specific choices:
-
-- Choice of **dissimilarity measure (distance)**:
-  - Distance between observations based on the selected variables;
-  - Indicates the degree of difference among observations.
- 
-- Choice of **linkage method** for observations:
-  - Specification of the distance measure when clusters have been formed. 
-
-### Dataset Overview
+## Dataset Overview
 
 Read dataset file to a dataframe
 ~~~python
 dataset = pd.read_csv('country_data.csv')
 ~~~
 
-Use *info()* and *describe()* to get a dataset overview. It can be concluded that:
+Use *info()* and *describe()* to get a dataset overview.
 
 ~~~python
 dataset.info()
@@ -80,13 +79,16 @@ desc_table = dataset.describe()
 ~~~
 
 <img src="https://github.com/user-attachments/assets/fc066b43-a626-43e7-b3b2-1526eaed277f" alt="Descriptive Statistics" width="500" height="200"> 
+<br><br>
+
+It can be concluded that:
 
 - There are 10 columns, with column 0 containing country labels and the other nine containing socio-economic variables;
 - All variables are **quantitative**. *Income* and *gdpp* are **discrete**, while the others are **continuous**.
 - The variables have distinct units of measurement, which implies that they need to be standardized.
 - There are no null values;
 
-### Standardize variables
+## Standardize variables
 
 Since the variables have distinct units of measurement, they need to be standardized to ensure the effective application of clustering techniques. Create a new dataframe without the country labels so the  function can be applied only to the dataset's quantitative variables.
 
@@ -102,7 +104,23 @@ Apply the ZScore function from scipy.stats to standardize the variables. This fu
 z_data = data.apply(zscore, ddof=1)
 ~~~
 
-#### Single Linkage
+## Dissimilarity Measure: Euclidean Distance
+
+There are several formulas to calculate the distance between observations. This project used the Euclidean distance, which is defined by the formula below.
+
+$$
+d_{pq} = \sqrt{\sum_{j=1}^{k}(ZX_{jp} - ZX_{jq})^2}
+$$
+
+The next step is to choose a linkage method.
+
+- Nearest neighbor (*single linkage*): prioritizes smaller distances and is recommended for cases with distinct observations.
+- Furthest neighbor (*complete linkage*): prioritizes larger distances and is recommended for cases with similar observations.
+- Between groups (*average linkage*): merges groups based on the average distance between all pairs of observations within the group being analyzed.
+
+Due to the simplicity of changing between the three methods, we can apply all of them to the data and see which leads to more meaningful clusters.
+
+### Single Linkage
 
 ~~~python
 plt.figure(figsize=(16,8))
@@ -116,7 +134,7 @@ plt.show()
 
 <img src="https://github.com/user-attachments/assets/a7f8a26b-3902-4061-ae9e-2692f715cc46" alt="Single Linkage" width="550" height="250">
 
-#### Average Linkage
+### Average Linkage
 
 ~~~python
 plt.figure(figsize=(16,8))
@@ -130,7 +148,7 @@ plt.show()
 
 <img src="https://github.com/user-attachments/assets/dc379933-3ec5-476f-960d-be25aa8b0bc7" alt="Average Linkage" width="550" height="250">
 
-#### Complete Linkage
+### Complete Linkage
 
 ~~~python
 plt.figure(figsize=(16,8))
@@ -144,8 +162,7 @@ plt.show()
 
 <img src="https://github.com/user-attachments/assets/820dd7f5-b79f-4b06-a429-7ca87bd65bd0" alt="Complete Linkage" width="550" height="250">
 
-
-#### Cluster Labels
+### Cluster Labels
 
 Since the complete linkage method returned the best result, we create a new variable that stores labels from the clusters defined by the AgglomerativeClustering function using linkage = 'complete'.
 
