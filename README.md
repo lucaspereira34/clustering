@@ -90,7 +90,9 @@ It can be concluded that:
 
 ## Standardize variables
 
-Since the variables have distinct units of measurement, they need to be standardized to ensure the effective application of clustering techniques. Create a new dataframe without the country labels so the  function can be applied only to the dataset's quantitative variables.
+Since the variables have distinct units of measurement, they need to be standardized to ensure the effective application of clustering techniques. 
+
+Create a new dataframe without the country labels so the  function can be applied only to the dataset's quantitative variables.
 
 ~~~python
 # drop column with country labels
@@ -118,7 +120,7 @@ The next step is to choose a linkage method.
 - Furthest neighbor (*complete linkage*): prioritizes larger distances and is recommended for cases with similar observations.
 - Between groups (*average linkage*): merges groups based on the average distance between all pairs of observations within the group being analyzed.
 
-Due to the simplicity of changing between the three methods, we can apply all of them to the data and see which leads to more meaningful clusters.
+Due to the simplicity of changing between the three methods, we can apply all of them to the data and see which leads to more meaningful clusters. This can be done my comparing the **dendrograms** for each method.
 
 ### Single Linkage
 
