@@ -122,6 +122,8 @@ The next step is to choose a linkage method.
 
 Due to the simplicity of changing between the three methods, we can apply all of them to the data and see which leads to more meaningful clusters. This can be done my comparing the **dendrograms** for each method.
 
+A **dendrogram** is a diagram used in hierarchical clustering to visualize how clusters are grouped. The function dendrogram from scipy applies a different color for each cluster.
+
 ### Single Linkage
 
 ~~~python
