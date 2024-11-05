@@ -16,8 +16,14 @@ This project covers two types of clustering:
 
 ## Table of Contents
 
-- [Libraries](#libraries)
 - [Agglomerative Hierarchical Clustering](#agglomerative-hierarchical-clustering)
+  - [Libraries](#libraries)
+  - [Dataset Overview](#dataset-overview)
+  - [Standardize Variables](#standardize-variables)
+  - [Euclidean Distance](#euclidean-distance)
+      - [Single Linkage](#single-linkage)
+      - [Complete Linkage](#complete-linkage)
+      - [Average Linkage](#average-linkage)
 
 # Agglomerative Hierarchical Clustering
 
@@ -106,7 +112,7 @@ Apply the ZScore function from scipy.stats to standardize the variables. This fu
 z_data = data.apply(zscore, ddof=1)
 ~~~
 
-## Dissimilarity Measure: Euclidean Distance
+## Euclidean Distance
 
 There are several formulas to calculate the distance between observations. This project used the Euclidean distance, which is defined by the formula below.
 
@@ -138,20 +144,6 @@ plt.show()
 
 <img src="https://github.com/user-attachments/assets/a7f8a26b-3902-4061-ae9e-2692f715cc46" alt="Single Linkage" width="550" height="250">
 
-### Average Linkage
-
-~~~python
-plt.figure(figsize=(16,8))
-avg_link = sch.linkage(z_data, method='average', metric='euclidean')
-dendrogram_a = sch.dendrogram(avg_link)
-plt.title('Average Linkage Dendrogram', fontsize=16)
-plt.xlabel('Countries', fontsize=16)
-plt.ylabel('Euclidean Distance', fontsize=16)
-plt.show()
-~~~
-
-<img src="https://github.com/user-attachments/assets/dc379933-3ec5-476f-960d-be25aa8b0bc7" alt="Average Linkage" width="550" height="250">
-
 ### Complete Linkage
 
 ~~~python
@@ -165,6 +157,20 @@ plt.show()
 ~~~
 
 <img src="https://github.com/user-attachments/assets/820dd7f5-b79f-4b06-a429-7ca87bd65bd0" alt="Complete Linkage" width="550" height="250">
+
+### Average Linkage
+
+~~~python
+plt.figure(figsize=(16,8))
+avg_link = sch.linkage(z_data, method='average', metric='euclidean')
+dendrogram_a = sch.dendrogram(avg_link)
+plt.title('Average Linkage Dendrogram', fontsize=16)
+plt.xlabel('Countries', fontsize=16)
+plt.ylabel('Euclidean Distance', fontsize=16)
+plt.show()
+~~~
+
+<img src="https://github.com/user-attachments/assets/dc379933-3ec5-476f-960d-be25aa8b0bc7" alt="Average Linkage" width="550" height="250">
 
 ### Cluster Labels
 
