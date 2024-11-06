@@ -70,7 +70,7 @@ fig.show()
 #%% Agglomerative hierarchical clustering: euclidean distance + single linkage
 
 # Distances
-euclidian_dist = pdist(z_data, metric='euclidean')
+#euclidian_dist = pdist(z_data, metric='euclidean')
 
 # Metrics (distances)
     ## euclidean
@@ -93,6 +93,16 @@ plt.xlabel('Countries', fontsize=16)
 plt.ylabel('Euclidian Distance', fontsize=16)
 plt.show()
 
+#%% Agglomerative hierachical clustering: euclidean distance + complete linkage
+
+plt.figure(figsize=(16,8))
+complete_link = sch.linkage(z_data, method='complete', metric='euclidean')
+dendrogram_c = sch.dendrogram(complete_link)
+plt.title('Complete Linkage Dendrogram', fontsize=16)
+plt.xlabel('Countries', fontsize=16)
+plt.ylabel('Euclidean Distance', fontsize=16)
+plt.show()
+
 #%% Agglomerative hierarchical clustering: euclidean distance + average linkage
 
 plt.figure(figsize=(16,8))
@@ -103,15 +113,7 @@ plt.xlabel('Countries', fontsize=16)
 plt.ylabel('Euclidean Distance', fontsize=16)
 plt.show()
 
-#%% Agglomerative hierachical clustering: euclidean distance + complete linkage
-
-plt.figure(figsize=(16,8))
-complete_link = sch.linkage(z_data, method='complete', metric='euclidean')
-dendrogram_c = sch.dendrogram(complete_link)
-plt.title('Complete Linkage Dendrogram', fontsize=16)
-plt.xlabel('Countries', fontsize=16)
-plt.ylabel('Euclidean Distance', fontsize=16)
-plt.show()
+#%% Cluster Labels
 
 # Create a new variable that stores a cluster label for each index
 cluster = AgglomerativeClustering(n_clusters = 5, metric = 'euclidean', linkage = 'complete')
@@ -207,3 +209,7 @@ analysis = dataset.drop(columns=['country']).groupby(by=['cluster'])
 
 cluster_avg = analysis.mean().T
 cluster_desc = analysis.describe().T
+
+#%% Apply the cluster to country labels
+
+result = pd.concat(objs=[dataset.country, z_data.cluster], axis='columns')
