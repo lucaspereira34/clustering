@@ -126,9 +126,9 @@ The next step is to choose a linkage method.
 - Furthest neighbor (*complete linkage*): prioritizes larger distances and is recommended for cases with similar observations.
 - Between groups (*average linkage*): merges groups based on the average distance between all pairs of observations within the group being analyzed.
 
-Due to the simplicity of changing between the three methods, we can apply all of them to the data and see which leads to more meaningful clusters. This can be done my comparing the **dendrograms** for each method.
+Due to the simplicity of changing between the three methods, we can apply all of them to the data and see which leads to more meaningful clusters. This can be done by comparing the **dendrograms** for each method.
 
-A **dendrogram** is a diagram used in hierarchical clustering to visualize how clusters are grouped. The function dendrogram from scipy applies a different color for each cluster.
+A **dendrogram** is a diagram used in hierarchical clustering to visualize how clusters are grouped. The dendrogram function from scipy applies a different color for each cluster.
 
 ### Single Linkage
 
@@ -172,9 +172,9 @@ plt.show()
 
 <img src="https://github.com/user-attachments/assets/dc379933-3ec5-476f-960d-be25aa8b0bc7" alt="Average Linkage" width="550" height="250">
 
-### Cluster Labels
+## Cluster Labels
 
-Since the complete linkage method returned the best result, we create a new variable that stores labels from the clusters defined by the AgglomerativeClustering function using linkage = 'complete'.
+The complete linkage method returned a dendrogram with a more visually appealing and meaningful cluster division. Hence, the cluster labels are stored in a new variable created by the *AgglomerativeClustering*, with the parameters *metric='euclidean'* and *linkage='complete'*.
 
 ~~~python
 cluster = AgglomerativeClustering(n_clusters = 5, metric = 'euclidean', linkage = 'complete')
@@ -186,3 +186,5 @@ data.cluster = data.cluster.astype('category')
 z_data['cluster'] = set_cluster
 z_data.cluster = z_data.cluster.astype('category')
 ~~~
+
+
