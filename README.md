@@ -21,9 +21,7 @@ This project covers two types of clustering:
   - [Dataset Overview](#dataset-overview)
   - [Standardize Variables](#standardize-variables)
   - [Euclidean Distance](#euclidean-distance)
-      - [Single Linkage](#single-linkage)
-      - [Complete Linkage](#complete-linkage)
-      - [Average Linkage](#average-linkage)
+  - [Cluster Labels](#cluster-labels)
 
 # Agglomerative Hierarchical Clustering
 
@@ -187,4 +185,37 @@ z_data['cluster'] = set_cluster
 z_data.cluster = z_data.cluster.astype('category')
 ~~~
 
+Apply clusters to the original country labels
 
+~~~python
+# Apply cluster to country labels
+result = pd.concat(objs=[dataset.country, z_data.cluster], axis='columns')
+~~~
+
+<img src="https://github.com/user-attachments/assets/92546253-91d1-4b46-86d0-7595168eb0e4" alt="Cluster Labels" width="300" height="250">
+<br><br>
+  
+It is possible to generate 3D visualizations based on three variables, allowing for a more comprehensive understanding of the data's structure
+
+~~~python
+# Perspective 1
+fig = px.scatter_3d(dataset, 
+                    x='total_fer', 
+                    y='income', 
+                    z='life_expec',
+                    color='cluster')
+fig.show()
+
+# Perspective 2
+fig = px.scatter_3d(dataset, 
+                    x='gdpp', 
+                    y='income', 
+                    z='life_expec',
+                    color='cluster')
+fig.show()
+~~~
+
+<img src="https://github.com/user-attachments/assets/e0de14d9-fe8a-4496-be59-b1d59a530828" alt="3DPerspective1" width="400" height="350">
+<br><br>
+
+<img src="https://github.com/user-attachments/assets/b22d84e0-0cf8-4a58-9f7b-76e9498c5e7b" alt="3DPerspective2" width="400" height="350">
